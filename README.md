@@ -26,6 +26,11 @@ Scene 3: Searching the key to unlock the door
 
 Scene 4: Attacking a character to complete the game
 
+### Start up
+To run this webVR game, you should be at Escaper(root) folder, and type command:
+```
+npm i -g five-server@latest && five-server --port=8000
+```
 
 #### Check box
 
