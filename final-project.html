@@ -5,6 +5,7 @@
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
+    <script src="follow.js"></script>
     <!-- Loading threejs framework
     <meta charset="UTF-8" />
     <script type="text/javascript" charset="UTF-8" src="./libs/three/three.js"></script>
@@ -27,6 +28,10 @@
       <a-asset-item 
       id="player" 
       src="objects/playerWalk.gltf"></a-asset-item>
+
+      <a-asset-item 
+      id="name" 
+      src="objects/name.gltf"></a-asset-item>
 
       <a-asset-item
         id="painting"
@@ -214,6 +219,15 @@
   scale="0.417 2.82 2.82">
 </a-entity>
 
+<a-entity id="name"
+  follow="target:#avbox; url:gameover.html; speed:2; dist:10"
+  gltf-model="#name"
+  rotation="0 18 0"
+  position="-6.5 1 -4.5"
+  scale="1.5 1.5 1.5">
+</a-entity>
+
+
 <a-entity light="type: point; intensity: 2; 
     distance: 20; castShadow: true;color:pink"
     position="0 11 -1">
@@ -249,9 +263,10 @@
 
   <a-entity id="key"
     gltf-model="#key"
-    position="-9.4 2.8 -1"
+    position="0.6 3 -8.8"
     ammo-body="type: dynamic"
-    scale="0.7 0.7 0.7"
+    ammo-material="color:red"
+    scale="0.3 0.3 0.3"
     animation="property: rotation; dur: 10000;
                        to: 0 360 0; loop: true">
     
