@@ -5,7 +5,7 @@
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
-    <script src="follow.js"></script>
+    <script src="js/follow.js"></script>
     <!-- Loading threejs framework
     <meta charset="UTF-8" />
     <script type="text/javascript" charset="UTF-8" src="./libs/three/three.js"></script>
@@ -220,7 +220,6 @@
 </a-entity>
 
 <a-entity id="name"
-  follow="target:#avbox; url:gameover.html; speed:2; dist:10"
   gltf-model="#name"
   rotation="0 18 0"
   position="-6.5 1 -4.5"
@@ -266,6 +265,7 @@
     position="0.6 3 -8.8"
     ammo-body="type: dynamic"
     ammo-material="color:red"
+    follow="target:#avbox; url:white_house.html; speed:2; dist:10"
     scale="0.3 0.3 0.3"
     animation="property: rotation; dur: 10000;
                        to: 0 360 0; loop: true">
