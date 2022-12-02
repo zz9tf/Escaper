@@ -1,0 +1,252 @@
+<html>
+  <head>
+    <!-- Loading aframe framework -->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
+    <script src="js/follow.js"></script>
+    <!-- Loading threejs framework
+    <meta charset="UTF-8" />
+    <script type="text/javascript" charset="UTF-8" src="./libs/three/three.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="./libs/three/controls/TrackballControls.js"></script>
+    <script type="text/javascript" src="./js/01-02.js"></script>
+    <link rel="stylesheet" href="./css/default.css"> -->
+    
+  </head>
+
+  <body>
+    <a-scene physics="friction:0.2; restitution:0.2; debug:false"
+    renderer="antialias:true"
+    raycaster="far: 100; objects: [link];" 
+    cursor="rayOrigin: mouse" 
+    camera-position>
+
+  <!-- import objects -->
+    <a-assets>
+
+      <a-asset-item 
+      id="player" 
+      src="objects/playerWalk.gltf"></a-asset-item>
+
+
+      <a-asset-item
+        id="singlelegtable"
+        src="objects/single_leg_table.gltf"></a-asset-item>
+    
+      <a-asset-item
+        id="reflectiveegg"
+        src="objects/reflectiveegg.gltf"></a-asset-item>
+    
+      <a-asset-item
+        id="door"
+        src="objects/Door.gltf"></a-asset-item>
+
+
+      <a-asset-item
+        id="trophy1"
+        src="objects/trophy.gltf"></a-asset-item>
+
+      <a-asset-item
+        id="trophy2"
+        src="objects/trophy.gltf"></a-asset-item>
+
+      <a-asset-item
+        id="trophy3"
+        src="objects/trophy.gltf"></a-asset-item>
+
+      <a-asset-item
+        id="trophy4"
+        src="objects/trophy.gltf"></a-asset-item>
+        
+
+      <img id="cherry-light" 
+        src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fcherry_light.jpg?v=1603277741102">
+      <img id="sky0"
+        src="texture/blue-g0876c9fbb_1920.jpg">
+      <img id="room1-wall"
+        src="texture/bluewall.jpg">
+      <img id="nightsky"
+        src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fnightsky.png?v=1603277760890">
+   
+      <a-mixin id="room1Wall" 
+        geometry="primitive: box" 
+        material="src:#room1-wall; repeat:3.2 2; color:#6ca1c8" 
+        scale="20 13 0.1"></a-mixin>
+      
+      <a-mixin id="room1DoorWall1" 
+        geometry="primitive: box" 
+        material="src:#room1-wall; repeat:2.3 2; color:#6ca1c8" 
+        scale="11 13 0.1"></a-mixin>
+      <a-mixin id="room1DoorWall2" 
+        geometry="primitive: box" 
+        material="src:#room1-wall; repeat:0.8 2; color:#6ca1c8" 
+        scale="3.5 13 0.1"></a-mixin>
+      <a-mixin id="room1DoorWall3" 
+        geometry="primitive: box" 
+        material="src:#room1-wall; repeat:1.2 0.5; color:#6ca1c8" 
+        scale="5.5 3 0.1"></a-mixin>
+        
+ </a-assets>
+  
+
+  <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" 
+            material="src:#cherry-light; repeat: 40 40; color:#ecf3f8"
+            static-body></a-plane>
+
+  <a-plane id="ceiling" position="0 12.8 0" rotation="-90 0 0" width="40" height="40" 
+            scale="0.5 0.5 0.7"
+            material="color:#FED4E7 transparent:true; opacity:0.5"
+            static-body></a-plane>
+
+
+  <a-sky src="#nightsky"></a-sky>
+
+
+  <a-entity id="singlelegtable"
+    gltf-model="#singlelegtable"
+    position="-4 0 -7.5"
+    scale="1 1 1">
+  </a-entity>
+
+
+
+  <a-entity id="door"
+  gltf-model="#door"
+  shadow="receive: false"
+  position="-3.7 0 10"
+  rotation="0 0 0"
+  scale="0.8 0.75 0.9">
+</a-entity>
+
+<a-entity light="type: point; intensity: 2; 
+    distance: 20; castShadow: true;color:blue"
+    position="0 11 -1">
+</a-entity>
+
+<a-entity id="sun" light="type: spot; intensity: 1; 
+    distance: 50; castShadow: true;color:#FFFBEF"
+    rotation="-95 6.5 0.5"
+    position="6.5 22 -4.5">
+</a-entity>
+
+  <a-entity id="lampLight" light="type: point; intensity: 1.2; 
+                color:#FED4E7; angel: 50;
+                penumbra: 0.1; castShadow: true"
+            position="-0.3 3.7 -10.5">
+</a-entity>
+
+<a-entity id="reflectiveegg"
+static-body
+gltf-model="#reflectiveegg"
+shadow="receive: false"
+position="13 3 -15"
+scale="1 1 1">
+</a-entity>
+
+
+
+<a-entity id="trophy1"
+    gltf-model="#trophy1"
+    position="0.6 3 -8.8"
+    ammo-body="type: dynamic"
+    ammo-material="color:blue"
+    scale="1 1 1"
+    animation="property: rotation; dur: 20000;
+                       to: 0 360 0; loop: true">
+ </a-entity>
+
+ <a-entity id="trophy2"
+    gltf-model="#trophy2"
+    position="5 3 -8.8"
+    ammo-body="type: dynamic"
+    ammo-material="color:blue"
+    scale="1 1 1"
+    animation="property: rotation; dur: 20000;
+                       to: 0 -360 0; loop: true">
+ </a-entity>
+
+ <a-entity id="trophy3"
+ gltf-model="#trophy3"
+ position="8 3 -8.8"
+ ammo-body="type: dynamic"
+ ammo-material="color:blue"
+ scale="1 1 1"
+ animation="property: rotation; dur: 20000;
+                    to: 0 360 0; loop: true">
+</a-entity>
+
+<a-entity id="trophy4"
+gltf-model="#trophy4"
+position="13 3 -8.8"
+ammo-body="type: dynamic"
+ammo-material="color:blue"
+scale="1 1 1"
+animation="property: rotation; dur: 20000;
+                   to: 0 -360 0; loop: true">
+</a-entity>
+
+    <a-link href="white_house.html"
+    link-controls
+    title="white house" 
+    position="-1.5 1 -8"
+    ></a-link>
+
+
+ 
+ <!-- pink room1 wall -->
+ <a-entity mixin="room1Wall" position="10 6.3 0" rotation="0 90 0"></a-entity>
+ <a-entity mixin="room1Wall" position="0 6.3 -10"></a-entity>
+ <a-entity mixin="room1Wall" position="-10 6.3 0" rotation="0 90 0"></a-entity>
+ <a-entity mixin="room1DoorWall1" position="4.5 6.3 10" ></a-entity>
+ <a-entity mixin="room1DoorWall2" position="-8.2 6.3 10" ></a-entity>
+ <a-entity mixin="room1DoorWall3" position="-3.7 11.3 10" ></a-entity>
+
+ 
+ <!--  AVATAR with Camera and movement controls -->
+
+<a-entity  id="avbox"
+        gltf-model="#player"
+        animation-mixer="clip:walk"
+        movement-controls="fly:false"
+        scale="0.7 0.8 0.7"
+        scorekeeper="timeleft:500; winscore:35"
+        link-controls
+        position="-2 0 6">
+
+<a-entity camera look-controls="pointerLockEnabled:true"
+                   position="0 6 -2">
+        
+
+<a-box id="avatar"
+        static-body
+        scale="0.5 4 0.5" position="-2 0 0" 
+        material="transparent:true; opacity:0">
+</a-box>
+
+<a-circle id="avatar"
+          static-body
+          radius="0.3" position="0 0 -1" 
+          material="color:green; transparent:true; opacity:0.1">
+</a-circle>
+
+<a-plane id="avatar"
+          static-body
+          scale="0.01 0.15" position="0 0 -1" 
+          material="color:green; transparent:true; opacity:0.5">
+</a-plane>
+<a-plane id="avatar"
+          static-body
+          scale="0.15 0.01" position="0 0 -1" 
+          material="color:green; transparent:true; opacity:0.5">
+</a-plane>
+</a-entity> 
+</a-entity>
+
+
+</a-entity>
+<!-- box -->
+
+</a-scene>
+</body>
+</html>
