@@ -4,6 +4,7 @@
 AFRAME.registerComponent('follow', {
     schema: {
       target: {type: 'selector'}, // entity to follow
+      // obj_man: {type: 'selector'},
       speed: {type: 'number'}, // speed to follow at
       url: {type: 'string'},  // url to go to when target is hit
       dist: {type: 'number', default:5} // distance where following starts
@@ -16,7 +17,7 @@ AFRAME.registerComponent('follow', {
     init: function () {
       // here we just initialize the directionVec3 variable
       this.directionVec3 = new THREE.Vector3();
-      console.log("initializing the follow component")
+      
     },
     
     
@@ -30,6 +31,7 @@ AFRAME.registerComponent('follow', {
   
       // Grab position vectors (THREE.Vector3) from the entities' three.js objects.
       var targetPosition = this.data.target.object3D.position;  // avatar's location
+      // if 
       var currentPosition = this.el.object3D.position;  // the following objects location
       
   

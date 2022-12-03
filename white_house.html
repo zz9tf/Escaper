@@ -19,9 +19,12 @@
            id="player" 
            src="objects/playerWalk.gltf"></a-asset-item>
       <a-asset-item 
+           id="monster" 
+           src="/objects/player1.gltf"></a-asset-item>
+      <a-asset-item 
            id="wavebow3a" 
            src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwavebow3a.gltf?v=1603659461253"></a-asset-item>
-      <a-asset-item 
+      <a-asset-item
            id="wavebow-l17" 
            src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwavebow-lesson17.gltf?v=1603716845062"></a-asset-item>
       <img id="nightsky"
@@ -30,9 +33,12 @@
            src="texture/brick-color.png">
       <a-mixin id="woodencube"
                geometry="primitive: box" 
-               material="color: #FDFEFE"></a-mixin>
+               material="color: #FDFEFE"
+               follow="target:#avbox; url:gameover.html; speed:1; dist:5"
+               ></a-mixin>
+               
     </a-assets>
-    <a-link href="white_house.html"
+    <a-link href="blue_house.html"
       link-controls
       title="white house" 
       position="-35.3 1 -39.16"></a-link>
@@ -205,29 +211,58 @@
         rotation="0 90 0"
         scale="35.932 10 0.1"></a-entity>
       
+      <a-entity 
+        position="34 0 25"
+        gltf-model="#monster"
+        animation-mixer="clip: run"
+        rotation="0 90 0"
+        scale="0.1 0.1 0.1"
+        follow="target:#avbox; url:gameover.html; speed:1.8; dist:150"></a-entity >
+      <a-entity 
+        position="15.935 1 25.684"
+        gltf-model="#monster"
+        animation-mixer="clip: run"
+        rotation="0 90 0"
+        scale="0.1 0.1 0.1"
+        follow="target:#avbox; url:gameover.html; speed:2; dist:150"></a-entity >
+      <a-entity 
+        position="24.778 0 27.855"
+        gltf-model="#monster"
+        animation-mixer="clip: run"
+        rotation="0 90 0"
+        scale="0.1 0.1 0.1"
+        follow="target:#avbox; url:gameover.html; speed:4; dist:10"></a-entity >
+      <a-entity 
+        position="24.778 0 -2.166"
+        gltf-model="#monster"
+        animation-mixer="clip: run"
+        rotation="0 90 0"
+        scale="0.1 0.1 0.1"
+        follow="target:#avbox; url:gameover.html; speed:2.5; dist:150"></a-entity >
+      
+      <!-- <a-entity position="15.935 1 25.684" 
+        color="mediumseagreen"
+        follow="target:#avatar; url:gameover.html; speed:1.5; dist:150"></a-entity > -->
+
       <!--  AVATAR with Camera and movement controls -->
       <a-entity 
           id="avbox"
           movement-controls="fly:false"
           link-controls
-          position="34 1 30">
-        <a-entity camera look-controls="pointerLockEnabled:True">
+          position="34 1 35">
+        <a-entity camera look-controls="pointerLockEnabled:True" position="0 -0.5 -2">
           <a-entity id="hud"
-              text="width:3; value: Don't touch the wall!;"
+              text="width:3; value: Don't touch the wall and ?; color: red"
               position="0 1.5 -2"
           ></a-entity>
           <a-entity
-            static-body
             id="avatar"
+            static-body
             gltf-model="#player"
             animation-mixer="clip: walk"
             position="0 -0.5 -2"
             rotation="0 0 0"
             scale="0.1 0.1 0.1"></a-entity>
-          <a-box id="avatar"
-            static-body
-            scale="1 4 1" position="0 -1 -2" 
-            material="transparent:true; opacity:0"></a-box>
         </a-entity>
       </a-entity>
     </a-scene>
