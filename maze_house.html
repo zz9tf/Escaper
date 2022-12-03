@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo: aframe-maze-component</title>
+    <meta name="description" content="demo: aframe-maze-component">        
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.6.0/dist/aframe-look-at-component.min.js"></script> 
+    <script src="https://unpkg.com/aframe-maze-component@0.1.24/dist/aframe-maze-component.min.js"></script>
+    <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
+    <script src="js/scorekeeper.js"></script>
+
+    <script id="coinsTemplate" type="text/x-nunjucks-template">
+        {% for x in range(0, 11) %}
+          {% for z in range(0, 11) %}
+            <a-cylinder mixin="coin" dynamic-body health="5" score="10" scale={{s}}
+                      position="{{ x * 30 - 50 }} 1 {{ z * 30 - 50}}">
+            </a-cylinder>
+          {% endfor %}
+        {% endfor %}
+      </script>
+  </head>
+  <body>
+    <a-scene physics="driver: ammo; friction:0.2; restitution:0.2; debug:false"
+    renderer="antialias:true"
+    raycaster="far: 100; objects: [link];" 
+    cursor="rayOrigin: mouse" 
+    camera-position>
+      <a-assets>
+        <a-asset-item id="player1" src="objects/walker.gltf"></a-asset-item>
+        <a-asset-item id="Carlawalk" src="objects/Carlawalk.gltf"></a-asset-item>
+        <img id="texture-wall" src="texture/brick.jpg">
+        <img id="texture-floor" src="texture/dirt1.png">
+        <img id="texture-sky" src="texture/cloud.jpg">
+        <a-box id="wall-one" 
+          static-body
+          material="src: #texture-wall" 
+          depth="2.5" width="10" height="12"></a-box>
+        <a-cylinder id="end-cap"
+          static-body color="#444444" 
+          depth="2" width="2" height="13"
+          radius="1"></a-cylinder>
+        <a-mixin id="coin"
+          rotation="90 0 0"
+          material="color:goldenrod">
+        </a-mixin>
+      </a-assets>
+      <a-link href="win.html"
+      link-controls
+      title="next" 
+      position="-50 10 -80"
+      image="#texture-sky"></a-link>
+
+      <a-link href="win.html"
+      link-controls
+      title="next" 
+      position="-60 10 70"
+      image="#texture-sky"></a-link>
+      <a-sky id="sky" material="src:texture/cloud.jpg"></a-sky>
+      <!--  COINS -->
+      <a-entity template="src: #coinsTemplate" data-s="0.2 0.05 0.2" ></a-entity>
+
+      <a-box id="center" 
+          position="0 0 0"
+          ammo-body="type: dynamic;" ammo-shape="type: box"
+          color="red" 
+          depth="0.5" width="0.5" height="10"></a-box>
+    <a-box  id="avbox"
+          movement-controls="fly:false"
+          scorekeeper="timeleft:500; winscore:35"
+          link-controls>
+      <a-entity id="player"
+          camera
+          universal-controls
+          kinematic-body
+          position="-20 20.8 20">
+          <a-entity 
+        position="0 -0.6 -1"
+        gltf-model="#player1"
+        animation-mixer="clip:walk"
+        rotation="0 0 0"
+        ></a-entity>
+        <a-entity id="hud"
+        health="10"
+        score="0"
+        text="width:3; value: Start Game!;"
+        position="0 1 -2"
+        ></a-entity>
+      </a-entity>
+    </a-box>
+
+      <!-- birds-eye view box to stand on -->
+      <!-- lower platform -->
+      <a-box static-body 
+          depth="0.25" height="1" width="1" 
+          position="-20 17.8 20"
+          rotation="-90 0 0"
+          color="tomato"></a-box>
+
+      <a-entity id="maze1" 
+          maze='size: 15 15; wall: #wall-one; cap: #end-cap; open: S 0 N 1 2 4 E 5;' 
+          position='0 0.5 0'
+          rotation='0 0 0'></a-entity>
+
+      <a-box id="ground" 
+        width="300" height="300" depth="1"
+        rotation="-90 0 0"
+        static-body 
+        ammo-body="type:static;" ammo-shape="type:box"
+        material="src: #texture-floor; repeat:40 40"></a-box>
+    </a-scene>
+  </body>
+</html>
