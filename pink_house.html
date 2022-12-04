@@ -130,9 +130,9 @@
             follow="target:#avbox; url:gameover.html; speed:1; dist:100">
   </a-entity> -->
 
-  <a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+  <a-entity id="ball" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
     <a-sphere position="5 1 -6" color="mediumseagreen"
-    follow="target:#avbox; url:gameover.html; speed:1; dist:150"></a-sphere>
+    follow="target:#avbox; url:gameover.html; speed:0.5; dist:100"></a-sphere>
 </a-entity>
 
 
@@ -323,7 +323,7 @@
 <a-entity id="hud"
           health="10"
           score="0"
-          text="width:3; value: Pink House!;"
+          text="width:3; value: Don't hit the Ball!;"
           position="-2 -1 -3"
 ></a-entity>
 
