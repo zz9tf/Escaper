@@ -16,7 +16,7 @@ The person goes through each level of the game trying to find the things they ne
 
 ### Level introduction
 
-We have four levels (houses), each one is responsible for one level.
+We have four levels (houses); each person is responsible for one level.
 
 Level 1: Pink House
 
