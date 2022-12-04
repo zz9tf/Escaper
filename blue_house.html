@@ -136,6 +136,7 @@
             position="-0.3 3.7 -10.5">
 </a-entity>
 
+
 <a-entity id="reflectiveegg"
 static-body
 gltf-model="#reflectiveegg"
@@ -145,6 +146,15 @@ scale="1 1 1">
 </a-entity>
 
 
+<a-entity id="box1" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+  <a-cone position="3 0.5 -6" color="yellow"
+  follow="target:#avbox; url:gameover.html; speed:1; dist:50"></a-cone>
+</a-entity>
+
+<a-entity id="box2" rotation="-10 0 0" animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000">
+  <a-cone position="0 0.5 -6" color="yellow"
+  follow="target:#avbox; url:gameover.html; speed:1; dist:50"></a-cone>
+</a-entity>
 
 <a-entity id="trophy1"
     gltf-model="#trophy1"
@@ -153,8 +163,7 @@ scale="1 1 1">
     ammo-material="color:blue"
     scale="1 1 1"
     animation="property: rotation; dur: 20000;
-                       to: 0 360 0; loop: true">
- </a-entity>
+                       to: 0 360 0; loop: true"></a-entity>
 
  <a-entity id="trophy2"
     gltf-model="#trophy2"
@@ -186,9 +195,9 @@ animation="property: rotation; dur: 20000;
                    to: 0 -360 0; loop: true">
 </a-entity>
 
-    <a-link href="white_house.html"
+    <a-link href="maze_house.html"
     link-controls
-    title="white house" 
+    title="maze house" 
     position="-1.5 1 -8"
     ></a-link>
 
@@ -205,17 +214,26 @@ animation="property: rotation; dur: 20000;
  
  <!--  AVATAR with Camera and movement controls -->
 
-<a-entity  id="avbox"
-        gltf-model="#player"
-        animation-mixer="clip:walk"
-        movement-controls="fly:false"
-        scale="0.7 0.8 0.7"
-        scorekeeper="timeleft:500; winscore:35"
-        link-controls
-        position="-2 0 6">
-
-<a-entity camera look-controls="pointerLockEnabled:true"
-                   position="0 6 -2">
+ <a-entity 
+ id="avbox"
+ movement-controls="fly:false"
+ link-controls
+ position="0 1 10">
+<a-entity camera look-controls="pointerLockEnabled:True" position="0 -0.5 -2">
+ <a-entity id="hud"
+     text="width:3; value: Don't get hit by the cones hidden among trophies!; color: yellow"
+     position="0 1.5 -2"
+ ></a-entity>
+ <a-entity
+   id="avatar"
+   static-body
+   gltf-model="#player"
+   animation-mixer="clip: walk"
+   position="0 -0.5 -2"
+   rotation="0 0 0"
+   scale="0.2 0.2 0.2"></a-entity>
+</a-entity>
+</a-entity>
         
 
 <a-box id="avatar"
