@@ -14,22 +14,22 @@ The person goes through each level of the game trying to find the things they ne
 
 - A message board that gives players hints.
 
-### Scene introduction
+### Level introduction
 
-We will have four scenes, each one is responsible for one scene.
+We have four levels (houses), each one is responsible for one level.
 
-Scene 1: A button with a cube that triggers the game
+Level 1: Pink House
 
-Scene 2: Moving objects to show the door to leave
+Level 2: White House
 
-Scene 3: Searching the key to unlock the door
+Level 3: Blue House
 
-Scene 4: Attacking a character to complete the game
+Level 4: Maze House
 
 ### Start up
 To run this webVR game, you should be at Escaper(root) folder, and type command:
 ```
-npm i -g five-server@latest && five-server --port=8000
+python3 -m http.server
 ```
 
 #### Check box
