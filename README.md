@@ -34,14 +34,11 @@ python3 -m http.server
 
 #### Check box
 
-- [ ] Player viewpoint 
-    - [ ] Player's hands
-    - [ ] Player's camera
-- [ ] Player Interaction
-    - [ ] Player's movement
-    - [ ] Clike objects
-    - [ ] Grab objects
-    - [ ] Get objects
-    - [ ] Shoot objects
-- [ ] Scenes design
+- [X] Player viewpoint 
+    - [x] Player's hands
+    - [x] Player's camera
+- [x] Player Interaction
+    - [x] Player's movement
+    - [x] Touch objects
+- [x] Scenes design
 
