@@ -17,14 +17,22 @@ The person goes through each level of the game trying to find the things they ne
 ### Level introduction
 
 We have four levels (houses); each person is responsible for one level.
+Start game:
 
 Level 1: Pink House
 
+
 Level 2: White House
+
 
 Level 3: Blue House
 
+
 Level 4: Maze House
+
+
+End game:
+
 
 ### Start up
 To run this webVR game, you should be at Escaper(root) folder, and type command:
@@ -41,4 +49,8 @@ python3 -m http.server
     - [x] Player's movement
     - [x] Touch objects
 - [x] Scenes design
+
+### Show Case
+
+#### Start
 
